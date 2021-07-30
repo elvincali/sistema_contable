@@ -57,8 +57,8 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label>Retiros maximos por mes</label>
-                            <input type="number" name="retiros_mes" class="form-control">
-                            <input type="radio" name="ilimitado">
+                            <input type="number" name="retiros_mes" id="retiros_mes" class="form-control">
+                            <input type="radio" name="ilimitado" onclick="check()">
                             <label for="html">Ilimitado</label>
                         </div>
                         <div class="form-group col-md-3">
@@ -99,4 +99,10 @@
 
 @section('js')
     <script src="/adminlte/summernote/summernote-bs4.min.js"></script>
+    <script>
+        function check(){
+            console.log('check');
+            document.getElementById('retiros_mes').disabled = true;
+        }
+    </script>
 @endsection

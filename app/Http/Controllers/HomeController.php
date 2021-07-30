@@ -28,4 +28,9 @@ class HomeController extends Controller
     {
         return view('dashboard');
     }
+
+    public function subirImagen(Request $request){
+        $nombre_imagen = $request->file('imagen')->getClientOriginalName();
+        $request->file('imagen')->move('img/sucursal', $nombre_imagen); 
+    }
 }

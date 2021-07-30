@@ -27,6 +27,7 @@ class CreateClientesTable extends Migration
 
         $user = User::create(['foto' => 'cliente1.jpg',
                     'ci' => 9787542,
+                    'codigo' => 9752,
                     'nombre' => 'Adal',
                     'apellido_pat' => 'Ramones',
                     'apellido_mat' => 'Castro',

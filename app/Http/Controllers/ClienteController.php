@@ -23,6 +23,16 @@ class ClienteController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate([
+            'ci' => 'required',
+            'nombre' => 'required',
+            'apellido_pat' => 'required',
+            'apellido_mat' => 'required',
+            'fecha_nac' => 'required',
+            'telefono' => 'required',
+            'direccion' => 'required',
+        ]);
+
         try {
             DB::transaction(function() use ($request) {
 
@@ -31,6 +41,7 @@ class ClienteController extends Controller
                 $user = User::create([
                     'foto' => $nombre_imagen,
                     'ci' => $request->ci,
+                    'codigo' => random_int(1000, 9999),
                     'nombre' => $request->nombre,
                     'apellido_pat' => $request->apellido_pat,
                     'apellido_mat' => $request->apellido_mat,
@@ -59,6 +70,7 @@ class ClienteController extends Controller
 
     public function edit($id){
         $cliente = Cliente::join('users', 'clientes.user_id', 'users.id')
+                            ->where('users.id', $id)
                             ->select('users.*', 'clientes.*')
                             ->first();
         return view('cliente.edit', compact('cliente'));                    

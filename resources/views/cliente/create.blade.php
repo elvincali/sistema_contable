@@ -16,15 +16,6 @@
             <div class="col-12">
                 <div class="row">
                     <h4>Datos de clientes</h4>
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                 </div>
 
                 <form action="{{ route('clientes.store') }}" method="POST" enctype="multipart/form-data">
@@ -34,34 +25,55 @@
                     <div class="row">
                         <div class="form-group col-md-3">
                             <label>C.I.</label>
-                            <input type="number" name="ci" class="form-control">
+                            <input type="number" name="ci" class="form-control @error('ci') is-invalid @enderror" value="{{old('ci')}}">
+                            @error('ci')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group col-md-3">
                             <label>Nombre</label>
-                            <input type="text" name="nombre" class="form-control">
+                            <input type="text" name="nombre" class="form-control @error('nombre') is-invalid @enderror" value="{{old('nombre')}}">
+                            @error('nombre')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group col-md-3">
                             <label>Apellido Paterno</label>
-                            <input type="text" name="apellido_pat" class="form-control">
+                            <input type="text" name="apellido_pat" class="form-control @error('apellido_pat') is-invalid @enderror" value="{{old('apellido_pat')}}">
+                            @error('apellido_pat')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group col-md-3">
                             <label>Apellido Materno</label>
-                            <input type="text" name="apellido_mat" class="form-control">
+                            <input type="text" name="apellido_mat" class="form-control @error('apellido_mat') is-invalid @enderror" value="{{old('apellido_mat')}}">
+                            @error('apellido_mat')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label>Fecha de Nacimiento</label>
-                            <input type="date"name="fecha_nac" class="form-control">
+                            <input type="date"name="fecha_nac" class="form-control @error('fecha_nac') is-invalid @enderror" value="{{old('fecha_nac')}}">
+                            @error('fecha_nac')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror                            
                         </div>
                         <div class="form-group col-md-4">
                             <label>Celular</label>
-                            <input type="number" name="telefono" class="form-control">
+                            <input type="number" name="telefono" class="form-control @error('telefono') is-invalid @enderror" value="{{old('telefono')}}">
+                            @error('telefono')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror                            
                         </div>
                         <div class="form-group col-md-4">
                             <label>Direccion</label>
-                            <input type="text" name="direccion" class="form-control">
+                            <input type="text" name="direccion" class="form-control @error('direccion') is-invalid @enderror" value="{{old('direccion')}}">
+                            @error('direccion')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror                            
                         </div>
                     </div>
 

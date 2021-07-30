@@ -152,6 +152,18 @@ class CreatePermissionTables extends Migration
         Permission::create(['name' => 'mostrar transaccion'])->assignRole($role);    
         Permission::create(['name' => 'desactivar transaccion'])->assignRole($role);
         
+        Permission::create(['name' => 'ver deposito'])->assignRole($role);    
+        Permission::create(['name' => 'crear deposito'])->assignRole($role);    
+        Permission::create(['name' => 'editar deposito'])->assignRole($role);    
+        Permission::create(['name' => 'mostrar deposito'])->assignRole($role);    
+        Permission::create(['name' => 'desactivar deposito'])->assignRole($role);
+        
+        Permission::create(['name' => 'ver retiro'])->assignRole($role);    
+        Permission::create(['name' => 'crear retiro'])->assignRole($role);    
+        Permission::create(['name' => 'editar retiro'])->assignRole($role);    
+        Permission::create(['name' => 'mostrar retiro'])->assignRole($role);    
+        Permission::create(['name' => 'desactivar retiro'])->assignRole($role);
+        
     }
 
     /**

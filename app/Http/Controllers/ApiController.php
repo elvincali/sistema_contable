@@ -8,8 +8,10 @@ use Illuminate\Http\Request;
 class ApiController extends Controller
 {
     function validarCuenta(Request $request){
+        // return $request->ci;
         $cuenta = Cuenta::join('users', 'cliente_id', 'users.id')
-                        ->where('cuentas.num_cuenta', $request->num_cuenta)
+                        ->where('users.ci', $request->ci)
+                        ->orWhere('cuentas.num_cuenta', $request->num_cuenta)
                         ->select('num_cuenta', 'nombre', 'apellido_pat', 'apellido_mat')
                         ->first();
         if ($cuenta) {

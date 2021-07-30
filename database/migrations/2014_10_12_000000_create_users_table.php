@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('foto')->nullable();
             $table->integer('ci');
+            $table->integer('codigo');
             $table->string('nombre');
             $table->string('apellido_pat')->nullable();
             $table->string('apellido_mat')->nullable();
@@ -37,6 +38,7 @@ class CreateUsersTable extends Migration
 
         $user = User::create(['foto' => 'admin.jpg',
                     'ci' => 0000,
+                    'codigo' => 0000,
                     'nombre' => 'ADMIN',
                     'apellido_pat' => null,
                     'apellido_mat' => null,
@@ -51,6 +53,7 @@ class CreateUsersTable extends Migration
         $user->assignRole('admin');
         $user = User::create(['foto' => 'funcionario1.jpg',
                     'ci' => 9795297,
+                    'codigo' => 5297,
                     'nombre' => 'Roxana',
                     'apellido_pat' => 'Aramayo',
                     'apellido_mat' => 'Saldias',
@@ -65,6 +68,7 @@ class CreateUsersTable extends Migration
         $user->assignRole('funcionario');
         $user = User::create(['foto' => 'funcionario2.jpg',
                     'ci' => 959784,
+                    'codigo' => 9698,
                     'nombre' => 'Damian',
                     'apellido_pat' => 'Cortez',
                     'apellido_mat' => 'Mariscal',
