@@ -14,12 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');;
 });
 
 Auth::routes();
 
-Route::post('subir-imagen', 'HomeController@subirImagen')->name('subir-imagen');
 
 Route::get('/inicio', 'HomeController@index')->name('inicio');
 Route::get('/admin', 'HomeController@index')->name('admin');

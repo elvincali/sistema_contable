@@ -5,7 +5,16 @@
         <div class="row" id="tabla">
             <div class="col-12">
                 <div class="row">
-                    <h4>Añadiendo nuevo Deposito</h4>
+                    <h4>Añadiendo nuevo Retiro</h4>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
 
                 <form action="{{ route('retiros.store') }}" method="POST" enctype="multipart/form-data">
@@ -24,14 +33,14 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="form-group col-12" id="div_num_cuenta">
-                                            <label>C.I.</label>
-                                            <input type="number" id="ci" name="ci" class="form-control">
-                                            <span class="text-danger" id="error" style="display: none">Cuenta no encontrada</span>
+                                            <label>Nro de Cuenta</label>
+                                            <input type="number" id="num_cuenta" name="num_cuenta" class="form-control">
+                                            <span class="text-danger" id="error" style="display: none"></span>
                                             <input type="button" value="Buscar Cuenta" onclick="buscarCuenta()">
                                         </div>
                                         <div class="form-group col-12">
-                                            <label>Numero de Cuenta</label>
-                                            <input type="number" class="form-control" name="num_cuenta" id="num_cuenta">
+                                            <label>C.I.</label>
+                                            <input type="number" class="form-control" name="ci" id="ci">
                                         </div>
                                     </div>
                                 </div>
@@ -50,15 +59,15 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label>Nombre</label>
-                                            <input id="nombre" type="text" name="nombre" class="form-control" value="{{old('nombre')}}">
+                                            <input id="nombre" type="text" name="nombre" class="form-control" >
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>Apellido Paterno</label>
-                                            <input id="apellido_pat" type="text" name="apellido_pat" class="form-control">
+                                            <input id="apellido_pat" type="text" name="apellido_pat" class="form-control" >
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>Apellido Materno</label>
-                                            <input id="apellido_mat" type="text" name="apellido_mat" class="form-control">
+                                            <input id="apellido_mat" type="text" name="apellido_mat" class="form-control" >
                                         </div>
                                     </div>
                                 </div>
@@ -109,29 +118,30 @@
 @section('js')
     <script>
         function buscarCuenta() {
-            var ci_cliente = $('#ci').val(); // campo del formulario que voy a consultar
+            var num_cuenta_cliente = $('#num_cuenta').val(); // campo del formulario que voy a consultar
             $.ajax({ // incio petición
                 type: "POST", //Cuando se haya enviado un formulario
                 url: "/api/validar-cuenta", //se invoca el archivo infoclientes.php
                 data: {
-                    ci: ci_cliente
+                    num_cuenta: num_cuenta_cliente,
+                    tipo: 'RETIRO'
                 } //asigno el campo a la variable de peticion sql
             }).done(function(result) { //recibo el resulta
                 console.log(result);
-                var elemento = document.getElementById("ci");
-                if (result) {
-                    console.log(result);
+                var elemento = document.getElementById("num_cuenta");
+                if (result.error) {
+                    elemento.classList.add('is-invalid');
+                    document.getElementById('error').style.display = 'block'
+                    document.getElementById('error').innerText = result['error']
+                }else{
                     elemento.classList.remove('is-invalid');
                     elemento.classList.add('is-valid');
                     document.getElementById('error').style.display = 'none'
-                    document.getElementById('num_cuenta').value = result['num_cuenta'];
+                    document.getElementById('ci').value = result['ci'];
                     document.getElementById('nombre').value = result['nombre'];
                     document.getElementById('apellido_pat').value = result['apellido_pat'];
                     document.getElementById('apellido_mat').value = result['apellido_mat'];
                     document.getElementById('div_cuenta').style.display = 'block'
-                }else{
-                    elemento.classList.add('is-invalid');
-                    document.getElementById('error').style.display = 'block'
                 }
             });
         }

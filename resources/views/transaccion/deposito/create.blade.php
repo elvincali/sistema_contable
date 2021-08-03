@@ -63,7 +63,7 @@
                                         <div class="form-group col-12" id="div_num_cuenta">
                                             <label>Numero de Cuenta</label>
                                             <input type="number" id="num_cuenta" name="num_cuenta" class="form-control">
-                                            <span class="text-danger" id="error" style="display: none">Cuenta no encontrada</span>
+                                            <span class="text-danger" id="error" style="display: none"></span>
                                             <input type="button" value="Validar Cuenta" onclick="validarCuenta()">
                                         </div>
                                         <div class="form-group col-12">
@@ -119,28 +119,29 @@
 @section('js')
     <script>
         function validarCuenta() {
-            var num_cuenta = $('#num_cuenta').val(); // campo del formulario que voy a consultar
-            $.ajax({ // incio petición
-                type: "POST", //Cuando se haya enviado un formulario
-                url: "/api/validar-cuenta", //se invoca el archivo infoclientes.php
+            var num_cuenta = $('#num_cuenta').val(); 
+            $.ajax({
+                type: "POST", 
+                url: "/api/validar-cuenta", 
                 data: {
-                    num_cuenta: num_cuenta
-                } //asigno el campo a la variable de peticion sql
-            }).done(function(result) { //recibo el resulta
-                // $("#info").html(" La ciudad es " + result);
-                // $("#ciudad").val(result);
+                    num_cuenta: num_cuenta,
+                    tipo: 'DEPOSITO'
+                } 
+            }).done(function(result) {
                 var elemento = document.getElementById("num_cuenta");
-                if (result) {
+                if (result.error) {
+                    elemento.classList.add('is-invalid');
+                    document.getElementById('error').style.display = 'block'
+                    document.getElementById('nombre_titular').value = ''
+                    document.getElementById('div_cuenta').style.display = 'none'
+                }else{
                     console.log(result);
                     elemento.classList.remove('is-invalid');
                     elemento.classList.add('is-valid');
                     document.getElementById('error').style.display = 'none'
+                    document.getElementById('error').value = result.error
                     document.getElementById('nombre_titular').value = result['nombre'] +' '+ result['apellido_pat'] +' '+ result['apellido_mat'];
                     document.getElementById('div_cuenta').style.display = 'block'
-                }else{
-                    elemento.classList.add('is-invalid');
-                    document.getElementById('error').style.display = 'block'
-                    document.getElementById('nombre_titular').value = ''
                 }
             });
         }

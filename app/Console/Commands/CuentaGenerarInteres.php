@@ -44,7 +44,8 @@ class CuentaGenerarInteres extends Command
         foreach ($cuentas as $cuenta) {
             Cuenta::where('id', $cuenta->id)
                     ->update([
-                        'saldo' => $cuenta->saldo + ( $cuenta->saldo * ($cuenta->tasa_interes / 100) )
+                        'saldo' => $cuenta->saldo + ( $cuenta->saldo * ($cuenta->tasa_interes / 100) ),
+                        'retiros_mes' => 0
                     ]);
         }
     }

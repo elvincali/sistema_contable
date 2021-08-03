@@ -47,8 +47,8 @@ class CuentaController extends Controller
             'tipo_cuenta_id' => $request->tipo_cuenta_id,
             'fecha_apertura' => Carbon::now(),
             'saldo' => $request->saldo,
-            'retiros_mes' => $tipo_cuenta->retiros_mes,
-            'num_cuenta' => 1000 . $sucursal->codigo . rand(10, 99) . rand(1000000000, 9999999999)
+            'retiros_mes' => 0,
+            'num_cuenta' => 1000 . $sucursal->codigo . rand(10, 99) . rand(1000000, 9999999)
         ]);
 
         return redirect('cuentas')->with(['message' => 'guardado exitosamente']);

@@ -9,16 +9,14 @@ class MontoAceptado implements Rule
 {
 
     private $cuenta;
-    private $tipo;
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct($cuenta, $tipo)
+    public function __construct($cuenta)
     {
         $this->cuenta = $cuenta;
-        $this->tipo = $tipo;
     }
 
     /**
@@ -30,11 +28,8 @@ class MontoAceptado implements Rule
      */
     public function passes($attribute, $value)
     {
-        if ($this->tipo == 'Retiro') {
-            $cuenta = Cuenta::where('num_cuenta', $this->cuenta)->first();
-            return $cuenta ? $cuenta->saldo >= $value : false;
-        }
-        return true;
+        $cuenta = Cuenta::where('num_cuenta', $this->cuenta)->first();
+        return $cuenta ? $cuenta->saldo >= $value : false;
     }
 
     /**

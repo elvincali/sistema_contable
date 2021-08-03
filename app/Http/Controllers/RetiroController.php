@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Rules\MontoAceptado;
+use App\Rules\MontoPermitido;
+use App\Rules\RetirosPermitidos;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use DB;
@@ -25,7 +28,7 @@ class RetiroController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'monto' => 'required',
+            'monto' => ['bail', new MontoAceptado($request->num_cuenta), new MontoPermitido($request->num_cuenta)],
         ]);
         try {
             DB::transaction(function() use ($request) {
@@ -36,7 +39,7 @@ class RetiroController extends Controller
                     'fecha' => $dato->toDateString(),
                     'hora' => $dato->toTimeString(),
                     'ci_cliente' => $request->ci,
-                    'nombre_cliente' => $request->nombre .' '. $request->apellido_pat .' '. $request->apellido_mat ,
+                    'nombre_cliente' => strtoupper($request->nombre .' '. $request->apellido_pat .' '. $request->apellido_mat) ,
                     'tipo' => 'RETIRO',
                     'cod_funcionario' => Auth::user()->codigo,
                     'descripcion' => 'Retiro en caja de ahorro',
@@ -51,6 +54,7 @@ class RetiroController extends Controller
         } catch (\Exception $e) {
             return 'fallo';
         }
+        return redirect()->route('transacciones.index');
     }
 
     public function show($id)

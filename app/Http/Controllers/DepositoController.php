@@ -38,7 +38,7 @@ class DepositoController extends Controller
                     'fecha' => $dato->toDateString(),
                     'hora' => $dato->toTimeString(),
                     'ci_cliente' => $request->ci,
-                    'nombre_cliente' => $request->nombre .' '. $request->apellido_pat .' '. $request->apellido_mat ,
+                    'nombre_cliente' => strtoupper($request->nombre .' '. $request->apellido_pat .' '. $request->apellido_mat) ,
                     'tipo' => 'DEPOSITO',
                     'cod_funcionario' => Auth::user()->codigo,
                     'descripcion' => 'Deposito en caja de ahorro',
@@ -52,7 +52,7 @@ class DepositoController extends Controller
         } catch (\Exception $e) {
             //throw $th;
         }
-        
+        return redirect()->route('transacciones.index');        
 
         
     }

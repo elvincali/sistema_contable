@@ -25,12 +25,12 @@ class CreateClientesTable extends Migration
             $table->timestamps();
         });
 
-        $user = User::create(['foto' => 'cliente1.jpg',
+        $user = User::create(['foto' => 'cliente2.jpg',
                     'ci' => 9787542,
                     'codigo' => 9752,
-                    'nombre' => 'Adal',
-                    'apellido_pat' => 'Ramones',
-                    'apellido_mat' => 'Castro',
+                    'nombre' => 'ALBERTO',
+                    'apellido_pat' => 'RAMONES',
+                    'apellido_mat' => 'CASTRO',
                     'fecha_nac' => '2021-09-01',
                     'telefono' => 5487987,
                     'direccion' => 'km 6, doble via a la Guardia',
@@ -45,6 +45,30 @@ class CreateClientesTable extends Migration
             'nacionalidad' => 'nacionalidad',
             'estado_civ' => 'casado',
             'ocupacion' => 'zapatero',
+        ]);
+
+        $user->assignRole('cliente');
+
+        $user = User::create(['foto' => 'cliente1.jpg',
+                    'ci' => 9787548,
+                    'codigo' => 9722,
+                    'nombre' => 'MARIA',
+                    'apellido_pat' => 'BUSTAMANTE',
+                    'apellido_mat' => 'ARIAS',
+                    'fecha_nac' => '2021-09-08',
+                    'telefono' => 79584879,
+                    'direccion' => 'plan 3000, doble via a la Guardia',
+                    'latitud' => '5487987sdd',
+                    'longitud' => '5487987sdd',
+                    'email' => 'user4@user.com',
+                    'password' => Hash::make('0120'),
+        ]);
+        Cliente::create([
+            'user_id' => 5,
+            'genero' => 'femenino',
+            'nacionalidad' => 'Boliviano',
+            'estado_civ' => 'casada',
+            'ocupacion' => 'Ama de casa',
         ]);
 
         $user->assignRole('cliente');

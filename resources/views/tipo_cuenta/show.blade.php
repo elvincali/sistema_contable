@@ -41,7 +41,7 @@
                         <div class="form-group col-md-8">
                             <span>{{ $tipo_cuenta->nombre }}</span> <br>
                             <span>{{ $tipo_cuenta->descripcion }}</span> <br>
-                            <strong>Tasa de interes: </strong>{{ $tipo_cuenta->tasa_interes }} <br>
+                            <strong>Tasa de interes: </strong>{{ $tipo_cuenta->tasa_interes }}% <br>
                             <strong>Monto minimo de apertura: </strong> {{ $tipo_cuenta->apertura_minima }} <br>
                             @if ( $tipo_cuenta->retiros_mes == null )
                                 <strong>Maximo retiros/mes: </strong> Ilimitado <br>
@@ -53,20 +53,24 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <span>Caracteristicas: </span>
-                            <ul>
-                                @foreach ($tipo_cuenta->caracteristicas as $caracteristica)
-                                    <li>{{ $caracteristica }}</li>
-                                @endforeach
-                            </ul>
+                            <div class="card card-info">
+                                <span class="card-header">Caracteristicas: </span>
+                                <ul>
+                                    @foreach ($tipo_cuenta->caracteristicas as $caracteristica)
+                                        <li>{{ $caracteristica }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                         <div class="form-group col-md-6">
-                            <span>Ventajas: </span>
-                            <ul>
-                                @foreach ($tipo_cuenta->ventajas as $ventaja)
-                                    <li>{{ $ventaja }}</li>
-                                @endforeach
-                            </ul>
+                            <div class="card card-info">
+                                <span class="card-header">Ventajas: </span>
+                                <ul>
+                                    @foreach ($tipo_cuenta->ventajas as $ventaja)
+                                        <li>{{ $ventaja }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
 

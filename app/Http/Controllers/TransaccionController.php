@@ -19,7 +19,7 @@ use App\Transaccion;
 class TransaccionController extends Controller
 {
     public function index(){
-        $transacciones = Transaccion::join('cuentas', 'cuenta_origen_id', 'cuentas.id')
+        $transacciones = Transaccion::join('cuentas', 'num_cuenta_id', 'cuentas.id')
                                     ->join('users', 'cliente_id', 'users.id')
                                     ->select('transaccions.*', 'users.nombre', 'users.apellido_pat', 'num_cuenta as cuenta_origen')
                                     ->get();
@@ -28,7 +28,7 @@ class TransaccionController extends Controller
     }
 
     public function create(){
-
+        return view('transaccion.transaccion.create');
     }
 
     public function store(Request $request){

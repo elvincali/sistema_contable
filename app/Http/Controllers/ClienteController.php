@@ -15,6 +15,7 @@ class ClienteController extends Controller
         $clientes = Cliente::join('users', 'clientes.user_id', 'users.id')
                             ->select('users.*', 'clientes.*')
                             ->get();
+
         return view('cliente.index', compact('clientes'));
     }
 
@@ -42,9 +43,9 @@ class ClienteController extends Controller
                     'foto' => $nombre_imagen,
                     'ci' => $request->ci,
                     'codigo' => random_int(1000, 9999),
-                    'nombre' => $request->nombre,
-                    'apellido_pat' => $request->apellido_pat,
-                    'apellido_mat' => $request->apellido_mat,
+                    'nombre' => strtoupper($request->nombre),
+                    'apellido_pat' => strtoupper($request->apellido_pat),
+                    'apellido_mat' => strtoupper($request->apellido_mat),
                     'fecha_nac' => $request->fecha_nac,
                     'telefono' => $request->telefono,
                     'direccion' => $request->direccion,

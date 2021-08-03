@@ -10,38 +10,32 @@
     <div class="row mb-2">
         <div class="col-12">
             <div class="row align-items-center">
-                <h2>Lista de Depositos</h2>
-                @can('crear cuenta')
-                    <a href="{{ route('transacciones.create') }}" class="btn btn-outline-success btn-sm ml-5">Añadir</a>
+                <h2>Lista de transacciones</h2>
+                @can('crear deposito')
+                    <a href="{{ route('depositos.create') }}" class="btn btn-outline-success btn-sm ml-5">Nuevo Deposito</a>
                 @endcan
+                @can('crear retiro')
+                    <a href="{{ route('retiros.create') }}" class="btn btn-outline-danger btn-sm ml-5">Nuevo Retiro</a>
+                @endcan
+                {{-- @can('crear transaccion')
+                    <a href="{{ route('transacciones.create') }}" class="btn btn-outline-info btn-sm ml-5">Nueva Transaccion</a>
+                @endcan --}}
             </div>
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Tipo</th>
+                        <th></th>
                         <th>Monto</th>
                         <th>Fecha</th>
                         <th>Cuenta Origen</th>
                         <th>Cuenta Destino</th>
                         <th>Usuario</th>
-                        <th>Cajero</th>
-                        <th></th>
+                        <th>Tipo</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($transacciones as $transaccion)
                         <tr>
-                            @if ( $transaccion->tipo == 'deposito' )
-                                <td><small class="badge badge-success">{{ $transaccion->tipo }}</small></td>
-                            @else
-                                <td><small class="badge badge-danger">{{ $transaccion->tipo }}</small></td>
-                            @endif
-                            <td>{{ $transaccion->monto }}</td>
-                            <td>{{ $transaccion->fecha }}</td>
-                            <td>{{ $transaccion->cuenta_origen }}</td>
-                            <td>{{ $transaccion->cuenta_destino_id }}</td>
-                            <td>{{ $transaccion->nombre .' '. $transaccion->apellido_pat }}</td>
-                            <td>{{ $transaccion->cajero_id }}</td>
                             <td>
                                 @can('mostrar transaccion')
                                     <a class="btn btn-info mt-1" href="{{ route('transacciones.show', $transaccion->id) }}">
@@ -49,6 +43,16 @@
                                     </a>
                                 @endcan
                             </td>
+                            <td>{{ $transaccion->monto }}</td>
+                            <td>{{ $transaccion->fecha }}</td>
+                            <td>{{ $transaccion->cuenta_origen }}</td>
+                            <td>{{ $transaccion->cuenta_destino_id }}</td>
+                            <td>{{ $transaccion->nombre .' '. $transaccion->apellido_pat }}</td>
+                            @if ( $transaccion->tipo == 'DEPOSITO' )
+                                <td><small class="badge badge-success">{{ $transaccion->tipo }}</small></td>
+                            @else
+                                <td><small class="badge badge-danger">{{ $transaccion->tipo }}</small></td>
+                            @endif
                         </tr>
                     @empty
                         <span>span no hay registros</span>
