@@ -23,7 +23,6 @@ class TransaccionController extends Controller
                                     ->join('users', 'cliente_id', 'users.id')
                                     ->select('transaccions.*', 'users.nombre', 'users.apellido_pat', 'num_cuenta as cuenta_origen')
                                     ->get();
-        
         return view('transaccion.index', compact('transacciones')); 
     }
 

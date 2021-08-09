@@ -16,7 +16,6 @@
 </head>
 <body class="hold-transition layout-top-nav layout-navbar-fixed">
 <div class="wrapper">
-
   @include('layouts.navbar')
 
   <!-- Content Wrapper. Contains page content -->

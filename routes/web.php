@@ -37,6 +37,12 @@ Route::resource('/depositos', 'DepositoController');
 Route::resource('/retiros', 'RetiroController');
 Route::resource('/transacciones', 'TransaccionController');
 
+Route::get('/backups', 'BackupController@index')->name('database.index');
+Route::get('/database/backups', 'BackupController@backup')->name('database.backup');
+Route::get('database/restore/{name_database}', 'BackupController@restore')->name('database.restore');
+Route::get('database/delete/{name_database}', 'BackupController@delete')->name('database.delete');
+Route::get('database/download/{name_database}', 'BackupController@download')->name('database.download');
+
 Route::get('/prueba', function(){
     return view('welcome');
 });

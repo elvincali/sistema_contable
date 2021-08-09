@@ -49,6 +49,12 @@ class LoginController extends Controller
     }
 
     public function redirectPath(){
+        $user = User::with('roles')
+                    ->where('users.id', Auth::user()->id)
+                    ->first();
+        if ($user->roles[0]->name == 'cliente') {
+            return '/principal';
+        }
         return '/inicio';
     }
 
