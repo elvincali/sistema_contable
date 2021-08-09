@@ -7,16 +7,18 @@
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="/adminlte/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/adminlte/dist/css/adminlte.min.css">
 
   @yield('css')
 </head>
-<body class="hold-transition layout-top-nav layout-navbar-fixed">
+<body class="hold-transition" id="navbar">
 <div class="wrapper">
-  @include('layouts.navbar')
+  @if (Auth::user()->roles()->first()->name == 'admin')
+    @include('layouts.navbarAdmin')
+  @else
+    @include('layouts.navbar')
+  @endif
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -64,6 +66,21 @@
                 Swal.fire('¡Guardado!','". session('message') ."','success')
              </script>
             "?>
+@endif
+
+@if (Auth::user()->roles()->first()->name == 'admin')
+  <?php echo
+  "<script>
+    document.getElementById('navbar').classList.add('sidebar-mini');
+  </script>
+  "?> 
+@else
+  <?php echo
+  "<script>
+    document.getElementById('navbar').classList.add('layout-top-nav');
+    document.getElementById('navbar').classList.add('layout-navbar-fixed');
+  </script>
+  "?> 
 @endif
 
 @yield('js')

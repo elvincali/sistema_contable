@@ -80,7 +80,7 @@
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
             <li class="nav-item">
                 <a href="{{ route('salir') }}" class="nav-link text-danger">
-                    Salir <i class="fas fa-sign-out-alt"></i>
+                    {{ Auth::user()->nombre }}<i class="fas fa-sign-out-alt"></i>
                 </a>
             </li>
         </ul>

@@ -30,13 +30,13 @@
                 <tbody>
                     @forelse ($funcionarios as $funcionario)
                         <tr>
-                            @if ($funcionario->roles[0]->name == 'funcionario')
+                            @if ($funcionario->roles()->first()->name == 'funcionario')
                                 <td><img src="/img/funcionario/{{ $funcionario->foto }}" width="40" height="40"></td>
                                 <td>{{ $funcionario->nombre }} {{ $funcionario->apellido_pat }}</td>
                                 <td>{{ $funcionario->telefono }}</td>
                                 <td>{{ $funcionario->direccion }}</td>
                                 <td>{{ $funcionario->email }}</td>
-                                <td>{{ $funcionario->roles[0]->name }}</td>  
+                                <td>{{ $funcionario->roles()->first()->name }}</td>  
                                 <td>
                                     @can('mostrar usuario')
                                         <a class="btn btn-info mt-1" href="{{ route('funcionarios.show', $funcionario->id) }}">
