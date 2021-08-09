@@ -174,6 +174,10 @@
                 </div>
             </form>
         </div>
+        <span>email: admin@admin.com </span>
+        <span>password: 0120 </span><br>
+        <span>email: user1@user.com </span>
+        <span>password: 0120 </span>
     </div>
 </body>
 
