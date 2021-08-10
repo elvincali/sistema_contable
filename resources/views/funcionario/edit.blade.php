@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-4">
                 <section class="bar mb-0">
-                    <img src="/img/funcionario/{{ $funcionario->foto }}" style="width: 100%">
+                    <img src="{{ Storage::url($funcionario->foto) }}" style="width: 100%">
                 </section>
             </div>
             <div class="col-lg-8">

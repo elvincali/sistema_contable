@@ -48,6 +48,10 @@ class DepositoController extends Controller
                 $cuenta->update([
                     'saldo' => $cuenta->saldo + $request->monto
                 ]);
+
+                Bitacora::register(
+                    'crear', 'se ha creado la deposito del numero de cuenta' . $request->num_cuenta, \Request::ip()
+                );
             });
         } catch (\Exception $e) {
             //throw $th;

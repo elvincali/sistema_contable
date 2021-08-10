@@ -43,6 +43,8 @@ Route::get('database/restore/{name_database}', 'BackupController@restore')->name
 Route::get('database/delete/{name_database}', 'BackupController@delete')->name('database.delete');
 Route::get('database/download/{name_database}', 'BackupController@download')->name('database.download');
 
+Route::get('bitacora', 'HomeController@bitacora')->name('bitacora');
+
 Route::get('/prueba', function(){
     return view('welcome');
 });

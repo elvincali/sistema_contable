@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Cliente;
 use App\User;
+use App\Bitacora;
 use DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -36,11 +37,10 @@ class ClienteController extends Controller
 
         try {
             DB::transaction(function() use ($request) {
-
-                $nombre_imagen = $request->file('imagen')->getClientOriginalName();
+                $ruta = $request->file('imagen')->store('public');
                     
                 $user = User::create([
-                    'foto' => $nombre_imagen,
+                    'foto' => $ruta,
                     'ci' => $request->ci,
                     'codigo' => random_int(1000, 9999),
                     'nombre' => strtoupper($request->nombre),
@@ -61,7 +61,10 @@ class ClienteController extends Controller
                     'ocupacion' => $request->ocupacion,
                 ]);
                 $user->assignRole('cliente');
-                $request->file('imagen')->move('img/cliente', $nombre_imagen);  
+                
+                Bitacora::register(
+                    'crear', 'se ha creado el cliente ' . $id, \Request::ip()
+                );
             });
         } catch (\Exception $e) {
             return back();
@@ -74,14 +77,21 @@ class ClienteController extends Controller
                             ->where('users.id', $id)
                             ->select('users.*', 'clientes.*')
                             ->first();
+        Bitacora::register(
+            'editar', 'se ha editado el cliente ' . $id, \Request::ip()
+        );
+
         return view('cliente.edit', compact('cliente'));                    
     }
 
     public function update(Request $request, $id){
         try {
             DB::transaction(function() use ($request, $id) {
-                $nombre_imagen = $request->file('imagen')->getClientOriginalName();
                 $user = User::findOrFail($id);  
+                if ($request->hasFile('imagen')) {
+                    $ruta = $request->file('imagen')->store('public');
+                    $user->foto = $ruta;
+                }
                 $user->foto = $nombre_imagen;
                 $user->ci = $request->ci;
                 $user->nombre = $request->nombre;
@@ -101,7 +111,9 @@ class ClienteController extends Controller
                                     'ocupacion' => $request->ocupacion,
                                 ]);
 
-                $request->file('imagen')->move('img/cliente', $nombre_imagen);  
+                Bitacora::register(
+                    'actualizar', 'se ha actualizado el cliente ' . $id, \Request::ip()
+                );
             });
         } catch (\Exception $e) {
             return response()->json($e);

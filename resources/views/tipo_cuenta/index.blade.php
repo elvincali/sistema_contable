@@ -31,7 +31,7 @@
                 <tbody>
                     @foreach ($tipo_cuentas as $tipo_cuenta)
                         <tr>
-                            <td><img src="/img/tipo_cuenta/{{ $tipo_cuenta->imagen }}" width="40" height="40"></td>
+                            <td><img src="{{ Storage::url($tipo_cuenta->imagen) }}" width="40" height="40"></td>
                             <td>{{ $tipo_cuenta->nombre }}</td>
                             <td>{{ $tipo_cuenta->descripcion }}</td>
                             <td>{{ $tipo_cuenta->tasa_interes }}%</td>

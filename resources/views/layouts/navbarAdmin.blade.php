@@ -164,12 +164,6 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
-                                <p>Configuracion</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
                                 <p>Reportes</p>
                             </a>
                         </li>
@@ -177,6 +171,18 @@
                             <a href="{{ route('database.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>Database</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('bitacora') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>Bitacora</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>Configuracion</p>
                             </a>
                         </li>
                     </ul>

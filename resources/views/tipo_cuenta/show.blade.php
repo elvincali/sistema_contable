@@ -36,7 +36,7 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="/img/tipo_cuenta/{{ $tipo_cuenta->imagen }}" alt="Product Image" class="img-fluid mx-auto d-block">
+                            <img src="{{ Storage::url($tipo_cuenta->imagen) }}" alt="Product Image" class="img-fluid mx-auto d-block">
                         </div>
                         <div class="form-group col-md-8">
                             <span>{{ $tipo_cuenta->nombre }}</span> <br>

@@ -6,7 +6,7 @@
     <br>
     <div class="row">
         <div class="col-lg-4">
-            <img src="/img/sucursal/{{ $sucursal->imagen }}" alt="Product Image" class="img-fluid mx-auto d-block">
+            <img src="{{ Storage::url($sucursal->imagen) }}" alt="Product Image" class="img-fluid mx-auto d-block">
         </div>
         <div class="col-lg-8">
             <h4 class="lead mt-4 text-center"><strong>Dirección: </strong>{{ $sucursal->direccion }}</h4>

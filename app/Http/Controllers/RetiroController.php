@@ -50,6 +50,9 @@ class RetiroController extends Controller
                     'saldo' => $cuenta->saldo - $request->monto,
                     'retiros_mes' => $cuenta->retiros_mes + 1
                 ]);
+                Bitacora::register(
+                    'crear', 'se ha creado el retiro de la cuenta ' . $request->cliente_id, \Request::ip()
+                );
             });
         } catch (\Exception $e) {
             return 'fallo';

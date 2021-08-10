@@ -31,7 +31,7 @@
                 <tbody>
                     @forelse ($clientes as $cliente)
                         <tr>
-                            <td><img src="/img/cliente/{{ $cliente->foto }}" width="40" height="40"></td>
+                            <td><img src="{{ Storage::url($cliente->foto) }}" width="40" height="40"></td>
                             <td>{{ $cliente->nombre }} {{ $cliente->apellido_pat }}</td>
                             <td>{{ $cliente->ci }}</td>
                             <td>{{ $cliente->telefono }}</td>

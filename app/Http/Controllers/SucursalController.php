@@ -22,9 +22,8 @@ class SucursalController extends Controller
         $sucursales = new Sucursal();
         $sucursales->nombre = request('nombre');
 
-        $nombre_imagen = $request->file('imagen')->getClientOriginalName();
-        $request->file('imagen')->move('img/sucursal', $nombre_imagen);  
-        $sucursales->imagen = $nombre_imagen;
+        $ruta = $request->file('imagen')->store('public');
+        $sucursales->imagen = $ruta;  
 
         $sucursales->inicio_atencion = request('inicio_atencion');
         $sucursales->fin_atencion = request('fin_atencion');
@@ -57,9 +56,8 @@ class SucursalController extends Controller
         $sucursal = Sucursal::findOrFail($id);
         $sucursal->nombre = $request->nombre;
         if ($request->hasFile('imagen')) {
-            $nombre_imagen = $request->file('imagen')->getClientOriginalName();
-            $request->file('imagen')->move('img/sucursal', $nombre_imagen);  
-            $sucursal->imagen = $nombre_imagen;
+            $ruta = $request->file('imagen')->store('public');
+            $sucursales->imagen = $ruta;
         }
         $sucursal->update();
         $message = "La Sucursal se ha actualizado correctamente";

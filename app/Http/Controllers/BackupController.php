@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Backup;
+use App\Bitacora;
 use App\Console\Command;
 use Carbon\Carbon;
 use DB;
@@ -25,7 +26,9 @@ class BackupController extends Controller
         $output  = NULL;
         
         exec($command, $output, $returnVar);
-
+        Bitacora::register(
+            'crear', 'se ha creado el archivo ' . $name_database, \Request::ip()
+        );
 
         return redirect('backups')->with(['message' => 'se ha creado el backup exitosamente']);
     } 
@@ -37,17 +40,26 @@ class BackupController extends Controller
         $output  = NULL;
     
         exec($command, $output, $returnVar);
+        Bitacora::register(
+            'restaurar', 'se ha restaurado el archivo ' . $name_database, \Request::ip()
+        );
 
         return redirect('backups')->with(['message' => 'se ha restaurado la base de dato: '.$name_database]);
     } 
 
     public function delete($name_database){
         Storage::delete('backup/'.$name_database);
+        Bitacora::register(
+            'eliminar', 'se ha eliminado el archivo ' . $name_database, \Request::ip()
+        );
 
         return redirect('backups')->with(['message' => 'se ha eliminado la base de dato: '.$name_database]);
     }
 
     public function download($name_database){
+        Bitacora::register(
+            'descargar', 'se ha descargado el archivo ' . $name_database, \Request::ip()
+        );
         return Storage::download('backup/'.$name_database);
     }
 }

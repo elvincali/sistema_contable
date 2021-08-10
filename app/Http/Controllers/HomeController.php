@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Servicio;
-use App\Enfermera;
-use App\User;
+use App\Bitacora;
 
 use Illuminate\Http\Request;
 
@@ -32,5 +30,11 @@ class HomeController extends Controller
     public function subirImagen(Request $request){
         $nombre_imagen = $request->file('imagen')->getClientOriginalName();
         $request->file('imagen')->move('img/sucursal', $nombre_imagen); 
+    }
+
+    public function bitacora(){
+        $bitacoras = Bitacora::all();
+
+        return view('bitacora.index', compact('bitacoras'));
     }
 }

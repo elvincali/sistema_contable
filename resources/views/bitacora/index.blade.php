@@ -10,46 +10,28 @@
     <div class="row mb-2">
         <div class="col-12">
             <div class="row align-items-center">
-                <h2>Lista de Funcionarios</h2>
-                @can('crear usuario')
-                    <a href="{{ route('funcionarios.create') }}" class="btn btn-outline-success btn-sm ml-5">Añadir</a>
-                @endcan
+                <h2>Bitacora</h2>
             </div>
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Nombre</th>
-                        <th>Telefono</th>
-                        <th>Direccion</th>
-                        <th>Email</th>
-                        <th>Rol</th>
-                        <th></th>
+                        <th>Operador</th>
+                        <th>Accion</th>
+                        <th>Fecha/Hora</th>
+                        <th>Descripcion</th>
+                        <th>I.P.</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($funcionarios as $funcionario)
+                    @forelse ($bitacoras as $bitacora)
                         <tr>
-                            @if ($funcionario->roles()->first()->name == 'funcionario')
-                                <td><img src="{{ Storage::url($funcionario->foto) }}" width="40" height="40"></td>
-                                <td>{{ $funcionario->nombre }} {{ $funcionario->apellido_pat }}</td>
-                                <td>{{ $funcionario->telefono }}</td>
-                                <td>{{ $funcionario->direccion }}</td>
-                                <td>{{ $funcionario->email }}</td>
-                                <td>{{ $funcionario->roles()->first()->name }}</td>  
-                                <td>
-                                    @can('mostrar usuario')
-                                        <a class="btn btn-info mt-1" href="{{ route('funcionarios.show', $funcionario->id) }}">
-                                            <i class="far fa-eye"></i>
-                                        </a>
-                                    @endcan
-                                    @can('editar usuario')
-                                        <a class="btn btn-warning mt-1" href="{{ route('funcionarios.edit', $funcionario->id) }}">
-                                            <i class="far fa-edit"></i>
-                                        </a>
-                                    @endcan
-                                </td>
-                            @endif
+                            <td>{{ $bitacora->id }}</td>
+                            <td>{{ $bitacora->name_user }}</td>
+                            <td>{{ $bitacora->action }}</td>
+                            <td>{{ $bitacora->created_at }}</td>
+                            <td>{{ $bitacora->description }}</td>
+                            <td>{{ $bitacora->ip }}</td>
                         </tr>
                     @empty
                         <span>span no hay registros</span>

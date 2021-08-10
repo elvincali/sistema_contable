@@ -51,6 +51,10 @@ class CuentaController extends Controller
             'num_cuenta' => 1000 . $sucursal->codigo . rand(10, 99) . rand(1000000, 9999999)
         ]);
 
+        Bitacora::register(
+            'crear', 'se ha creado la cuenta del cliente' . $request->cliente_id, \Request::ip()
+        );
+
         return redirect('cuentas')->with(['message' => 'guardado exitosamente']);
     }    
 

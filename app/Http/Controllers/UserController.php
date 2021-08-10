@@ -37,9 +37,8 @@ class UserController extends Controller
         $funcionario = new User();
         $funcionario->nombre = $request->nombre;
 
-        $nombre_imagen = $request->file('imagen')->getClientOriginalName();
-        $request->file('imagen')->move('img/funcionario', $nombre_imagen);  
-        $funcionario->foto = $nombre_imagen;
+        $ruta = $request->file('imagen')->store('public');
+        $funcionario->foto = $ruta;
 
         $funcionario->nombre = $request->nombre;
         $funcionario->apellido_pat = $request->apellido_pat;
@@ -80,9 +79,8 @@ class UserController extends Controller
         $rol_actual = $funcionario::with('roles')->first();
         // return $funcionario->nombre;
         if ($request->hasFile('imagen')) {
-            $nombre_imagen = $request->file('imagen')->getClientOriginalName();
-            $request->file('imagen')->move('img/funcionario', $nombre_imagen);  
-            $funcionario->foto = $nombre_imagen;
+            $ruta = $request->file('imagen')->store('public');
+            $funcionario->foto = $ruta;
         }
 
         $funcionario->nombre = $request->nombre;

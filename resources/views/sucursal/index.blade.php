@@ -29,7 +29,7 @@
                 <tbody>
                     @foreach ($sucursales as $sucursal)
                         <tr>
-                            <td><img src="/img/sucursal/{{ $sucursal->imagen }}" width="40" height="40"></td>
+                            <td><img src="{{ Storage::url($sucursal->imagen) }}" width="40" height="40"></td>
                             <td>{{ $sucursal->nombre }}</td>
                             <td>{{ $sucursal->direccion }}</td>
                             <td>{{ $sucursal->codigo }}</td>

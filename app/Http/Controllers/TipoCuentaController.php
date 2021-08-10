@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\TipoCuenta;
 use App\Moneda;
+// use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 class TipoCuentaController extends Controller
 {
     public function index(){
@@ -24,13 +26,12 @@ class TipoCuentaController extends Controller
         $tipo_cuenta = new TipoCuenta();
 
         if ($request->hasFile('imagen')) {
-            $nombre_imagen = $request->file('imagen')->getClientOriginalName();
-            $request->file('imagen')->move('img/tipo_cuenta', $nombre_imagen);  
-            $tipo_cuenta->imagen = $nombre_imagen;
+            $ruta = $request->file('imagen')->store('public');
+            $tipo_cuenta->imagen = $ruta;
         }
 
         if ($request->ilimitado) {
-            $tipo_cuenta->retiros_mes = null;
+            $tipo_cuenta->retiros_mes = 0;
         }else {
             $tipo_cuenta->retiros_mes = $request->retiros_mes;
         }
@@ -60,9 +61,8 @@ class TipoCuentaController extends Controller
         $tipo_cuenta = TipoCuenta::findOrFail($id);
 
         if ($request->hasFile('imagen')) {
-            $nombre_imagen = $request->file('imagen')->getClientOriginalName();
-            $request->file('imagen')->move('img/tipo_cuenta', $nombre_imagen);  
-            $tipo_cuenta->imagen = $nombre_imagen;
+            $ruta = $request->file('imagen')->store('public');
+            $tipo_cuenta->imagen = $ruta;
         }
 
         if ($request->ilimitado) {
