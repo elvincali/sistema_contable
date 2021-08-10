@@ -92,7 +92,6 @@ class ClienteController extends Controller
                     $ruta = $request->file('imagen')->store('public');
                     $user->foto = $ruta;
                 }
-                $user->foto = $nombre_imagen;
                 $user->ci = $request->ci;
                 $user->nombre = $request->nombre;
                 $user->apellido_pat = $request->apellido_pat;
