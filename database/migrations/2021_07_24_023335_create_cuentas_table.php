@@ -31,14 +31,14 @@ class CreateCuentasTable extends Migration
             $table->timestamps();
         });
 
-        Cuenta::create([
-            'tipo_cuenta_id' => 1,
-            'cliente_id' => 4,
-            'num_cuenta' => 10001234155487956,
-            'fecha_apertura' => '2021-03-09',
-            'fecha_cierre' => null,
-            'saldo' => 5000,
-        ]);
+        // Cuenta::create([
+        //     'tipo_cuenta_id' => 1,
+        //     'cliente_id' => 4,
+        //     'num_cuenta' => 10001234155487956,
+        //     'fecha_apertura' => '2021-03-09',
+        //     'fecha_cierre' => null,
+        //     'saldo' => 5000,
+        // ]);
     }
 
     /**

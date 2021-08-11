@@ -12,6 +12,7 @@ use App\User;
 use App\Cliente;
 use App\TipoCuenta;
 use App\Sucursal;
+use App\Bitacora;
 
 class CuentaController extends Controller
 {

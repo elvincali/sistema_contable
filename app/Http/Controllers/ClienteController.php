@@ -52,9 +52,8 @@ class ClienteController extends Controller
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
                 ]);
-                $id = DB::getPdo()->lastInsertId();
                 $cliente = Cliente::create([
-                    'user_id' => $id,
+                    'user_id' => $user->id,
                     'genero' => $request->genero,
                     'nacionalidad' => $request->nacionalidad,
                     'estado_civ' => $request->estado_civ,
@@ -63,11 +62,11 @@ class ClienteController extends Controller
                 $user->assignRole('cliente');
                 
                 Bitacora::register(
-                    'crear', 'se ha creado el cliente ' . $id, \Request::ip()
+                    'crear', 'se ha creado el cliente ' . $user->id, \Request::ip()
                 );
             });
         } catch (\Exception $e) {
-            return back();
+            return $e;
         }
             return redirect('clientes')->with(['message' => 'Cliente guardado exitosamente']);
     }
