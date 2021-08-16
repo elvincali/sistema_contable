@@ -56,7 +56,7 @@ class CuentaController extends Controller
             'crear', 'se ha creado la cuenta del cliente' . $request->cliente_id, \Request::ip()
         );
 
-        return redirect('cuentas')->with(['message' => 'guardado exitosamente']);
+        return redirect()->route('cuentas.index')->with(['message' => 'guardado exitosamente']);
     }    
 
     public function edit($id){

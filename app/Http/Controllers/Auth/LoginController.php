@@ -49,6 +49,9 @@ class LoginController extends Controller
     }
 
     public function redirectPath(){
+        Bitacora::register(
+            'Sesion', 'Inicio de Sesion', \Request::ip()
+        );
         $user = User::with('roles')
                     ->where('users.id', Auth::user()->id)
                     ->first();
@@ -60,7 +63,7 @@ class LoginController extends Controller
 
     public function logout(Request $request){
         Bitacora::register(
-            'Cerrar Sesion', 'El usuario ' . Auth::user()->nombre . ' ha cerrado sesion', \Request::ip()
+            'Sesion', 'Se ha cerrado Sesion ', \Request::ip()
         );
         Auth::logout();
         $request->session()->invalidate();

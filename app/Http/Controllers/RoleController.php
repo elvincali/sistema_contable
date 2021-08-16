@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use App\Bitacora;
 
 class RoleController extends Controller
 {
@@ -42,7 +43,6 @@ class RoleController extends Controller
     }
 
     public function update(Request $request, $id){
-        // dd($request);
         $rol = Role::findOrFail($id);
         $rol->permissions()->detach();  // Elimina todos los permisos del rol
         $rol->name = $request->nombre;

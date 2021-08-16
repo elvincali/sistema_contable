@@ -57,7 +57,7 @@ class DepositoController extends Controller
         } catch (\Exception $e) {
             return $e;
         }
-        return redirect()->route('transacciones.index');        
+        return redirect()->route('transacciones.index')->with(['message' => 'se ha realizado el Deposito con exito']);        
 
         
     }

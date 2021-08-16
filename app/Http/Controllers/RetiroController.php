@@ -58,7 +58,7 @@ class RetiroController extends Controller
         } catch (\Exception $e) {
             return 'fallo';
         }
-        return redirect()->route('transacciones.index');
+        return redirect()->route('transacciones.index')->with(['message' => 'se ha realizado el Retiro con exito']);
     }
 
     public function show($id)

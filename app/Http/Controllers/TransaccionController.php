@@ -15,6 +15,7 @@ use App\Cuenta;
 use App\TipoCuenta;
 use App\Cliente;
 use App\Transaccion;
+use App\Bitacora;
 
 class TransaccionController extends Controller
 {
@@ -67,7 +68,7 @@ class TransaccionController extends Controller
         } catch (\Exception $e) {
             return back()->with(['message' => 'Ha ocurrido un problema, Vuelve a intentarlo']);
         }
-        return redirect('transacciones')->with(['message' => 'Transaccion realizada exitosamente']);
+        return redirect()->route('transaccion.index')->with(['message' => 'Transaccion realizada exitosamente']);
     }
 
     public function show(){

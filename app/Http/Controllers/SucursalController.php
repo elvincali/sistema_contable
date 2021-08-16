@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sucursal;
+use App\Bitacora;
 
 class SucursalController extends Controller
 {

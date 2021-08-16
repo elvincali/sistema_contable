@@ -37,8 +37,11 @@ class HomeController extends Controller
     }
 
     public function bitacora(){
-        $bitacoras = Bitacora::all();
-
+        $bitacoras = file(Storage_path() . '/app/bitacora.log');
+        for ($i=0; $i < count($bitacoras); $i++) { 
+            $bitacoras[$i] = explode('--', $bitacoras[$i]);
+        }
+        
         return view('bitacora.index', compact('bitacoras'));
     }
 

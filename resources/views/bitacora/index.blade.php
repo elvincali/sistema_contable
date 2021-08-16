@@ -15,10 +15,10 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
                         <th>Operador</th>
                         <th>Accion</th>
-                        <th>Fecha/Hora</th>
                         <th>Descripcion</th>
                         <th>I.P.</th>
                     </tr>
@@ -26,12 +26,9 @@
                 <tbody>
                     @forelse ($bitacoras as $bitacora)
                         <tr>
-                            <td>{{ $bitacora->id }}</td>
-                            <td>{{ $bitacora->name_user }}</td>
-                            <td>{{ $bitacora->action }}</td>
-                            <td>{{ $bitacora->created_at }}</td>
-                            <td>{{ $bitacora->description }}</td>
-                            <td>{{ $bitacora->ip }}</td>
+                            @foreach ($bitacora as $value)
+                                <td>{{$value}}</td>
+                            @endforeach
                         </tr>
                     @empty
                         <span>span no hay registros</span>

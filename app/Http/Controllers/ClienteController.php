@@ -68,7 +68,7 @@ class ClienteController extends Controller
         } catch (\Exception $e) {
             return $e;
         }
-            return redirect('clientes')->with(['message' => 'Cliente guardado exitosamente']);
+        return redirect()->route('clientes.index')->with(['message' => 'Cliente guardado exitosamente']);
     }
 
     public function edit($id){
@@ -116,7 +116,7 @@ class ClienteController extends Controller
         } catch (\Exception $e) {
             return response()->json($e);
         }
-        return redirect('clientes')->with(['message' => 'actualizado correctamente']);
+        return redirect()->route('clientes.index')->with(['message' => 'actualizado correctamente']);
     }
 
     public function show($id){
