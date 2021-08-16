@@ -46,21 +46,23 @@ class HomeController extends Controller
     }
 
     public function reporte(Request $request){
-        return view('pdf.index');
+        return view('pdf.reporte');
     }
 
     public function reporteBuscar(Request $request){
-        // return $request;
-        $items = Cliente::join('users', 'users.id', 'user_id')
-                    ->join('cuentas', 'cliente_id', 'users.id')
-                    // ->join('tipo_cuentas', 'tipo_cuentas.id', 'tipo_cuenta_id')
-                    ->join('transaccions', 'cuentas.id', 'num_cuenta_id')
-                    ->where('num_cuenta', 10001234407504112)
-                    ->get();
-                    // $items = $user->groupBy('user_id');
-        // return $user;
-        return $items;
-        return view('pdf.index', compact('items'));          
+        return view('pdf.reporte');         
 
+    }
+
+    function deposito(Request $request){
+        
+    }
+
+    function retiro(Request $request){
+        
+    }
+
+    function transaccion(Request $request){
+        
     }
 }
