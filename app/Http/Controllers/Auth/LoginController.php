@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Enfermera;
+use App\Bitacora;
 use App\User;
 
 class LoginController extends Controller
@@ -59,6 +59,9 @@ class LoginController extends Controller
     }
 
     public function logout(Request $request){
+        Bitacora::register(
+            'Cerrar Sesion', 'El usuario ' . Auth::user()->nombre . ' ha cerrado sesion', \Request::ip()
+        );
         Auth::logout();
         $request->session()->invalidate();
         return redirect('/');

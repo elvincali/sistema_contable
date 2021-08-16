@@ -29,6 +29,11 @@ class CreateTransaccionsTable extends Migration
             $table->foreign('num_cuenta_id')->references('id')->on('cuentas')->constrained();
             $table->timestamps();
         });
+
+        // Transaccion::create([
+        //     'monto' => 1200,
+        //     'fecha' => 2021
+        // ]);
     }
 
     /**

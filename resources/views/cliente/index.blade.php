@@ -14,6 +14,7 @@
                 @can('crear usuario')
                     <a href="{{ route('clientes.create') }}" class="btn btn-outline-success btn-sm ml-5">Añadir</a>
                 @endcan
+                {{-- <a href="javascript:window.print();">Imprimir</a> --}}
             </div>
             <table id="example1" class="table table-bordered table-striped">
                 <thead>

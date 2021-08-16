@@ -9,6 +9,7 @@ use DB;
 
 use App\Transaccion;
 use App\Cuenta;
+use App\Bitacora;
 
 class DepositoController extends Controller
 {
@@ -54,7 +55,7 @@ class DepositoController extends Controller
                 );
             });
         } catch (\Exception $e) {
-            //throw $th;
+            return $e;
         }
         return redirect()->route('transacciones.index');        
 

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Bitacora;
+use App\User;
+use App\Cliente;
+use App\Cuenta;
+use App\Transaccion;
 
 use Illuminate\Http\Request;
 
@@ -36,5 +40,24 @@ class HomeController extends Controller
         $bitacoras = Bitacora::all();
 
         return view('bitacora.index', compact('bitacoras'));
+    }
+
+    public function reporte(Request $request){
+        return view('pdf.index');
+    }
+
+    public function reporteBuscar(Request $request){
+        // return $request;
+        $items = Cliente::join('users', 'users.id', 'user_id')
+                    ->join('cuentas', 'cliente_id', 'users.id')
+                    // ->join('tipo_cuentas', 'tipo_cuentas.id', 'tipo_cuenta_id')
+                    ->join('transaccions', 'cuentas.id', 'num_cuenta_id')
+                    ->where('num_cuenta', 10001234407504112)
+                    ->get();
+                    // $items = $user->groupBy('user_id');
+        // return $user;
+        return $items;
+        return view('pdf.index', compact('items'));          
+
     }
 }

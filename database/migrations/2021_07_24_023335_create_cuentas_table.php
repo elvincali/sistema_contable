@@ -31,14 +31,78 @@ class CreateCuentasTable extends Migration
             $table->timestamps();
         });
 
-        // Cuenta::create([
-        //     'tipo_cuenta_id' => 1,
-        //     'cliente_id' => 4,
-        //     'num_cuenta' => 10001234155487956,
-        //     'fecha_apertura' => '2021-03-09',
-        //     'fecha_cierre' => null,
-        //     'saldo' => 5000,
-        // ]);
+        Cuenta::create([
+            'tipo_cuenta_id' => 1,
+            'cliente_id' => 4,
+            'num_cuenta' => 10001234155487943,
+            'fecha_apertura' => '2020-03-09',
+            'fecha_cierre' => null,
+            'saldo' => 5000,
+        ]);
+        Cuenta::create([
+            'tipo_cuenta_id' => 1,
+            'cliente_id' => 4,
+            'num_cuenta' => 10001234155487956,
+            'fecha_apertura' => '2021-03-09',
+            'fecha_cierre' => null,
+            'saldo' => 5000,
+        ]);
+        Cuenta::create([
+            'tipo_cuenta_id' => 1,
+            'cliente_id' => 5,
+            'num_cuenta' => 10001234155267956,
+            'fecha_apertura' => '2021-04-09',
+            'fecha_cierre' => null,
+            'saldo' => 5000,
+        ]);
+        Cuenta::create([
+            'tipo_cuenta_id' => 2,
+            'cliente_id' => 5,
+            'num_cuenta' => 10001234265487956,
+            'fecha_apertura' => '2021-06-09',
+            'fecha_cierre' => null,
+            'saldo' => 5000,
+        ]);
+        Cuenta::create([
+            'tipo_cuenta_id' => 1,
+            'cliente_id' => 6,
+            'num_cuenta' => 10001234155486556,
+            'fecha_apertura' => '2021-09-09',
+            'fecha_cierre' => null,
+            'saldo' => 5000,
+        ]);
+        Cuenta::create([
+            'tipo_cuenta_id' => 1,
+            'cliente_id' => 6,
+            'num_cuenta' => 10001234155537956,
+            'fecha_apertura' => '2021-10-09',
+            'fecha_cierre' => null,
+            'saldo' => 5000,
+        ]);
+        Cuenta::create([
+            'tipo_cuenta_id' => 1,
+            'cliente_id' => 7,
+            'num_cuenta' => 10001234195487956,
+            'fecha_apertura' => '2020-03-09',
+            'fecha_cierre' => null,
+            'saldo' => 5000,
+        ]);
+        Cuenta::create([
+            'tipo_cuenta_id' => 1,
+            'cliente_id' => 8,
+            'num_cuenta' => 10001234155467956,
+            'fecha_apertura' => '2021-11-09',
+            'fecha_cierre' => null,
+            'saldo' => 5000,
+        ]);
+        Cuenta::create([
+            'tipo_cuenta_id' => 1,
+            'cliente_id' => 9,
+            'num_cuenta' => 10001234155697956,
+            'fecha_apertura' => '2021-05-09',
+            'fecha_cierre' => null,
+            'saldo' => 5000,
+        ]);
     }
 
     /**

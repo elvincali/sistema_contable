@@ -12,6 +12,7 @@ use DB;
 
 use App\Transaccion;
 use App\Cuenta;
+use App\Bitacora;
 
 class RetiroController extends Controller
 {
