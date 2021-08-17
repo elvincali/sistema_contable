@@ -4,6 +4,10 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use Carbon\Carbon;
+
+use App\Transaccion;
+
 class CreateTransaccionsTable extends Migration
 {
     /**
@@ -30,10 +34,94 @@ class CreateTransaccionsTable extends Migration
             $table->timestamps();
         });
 
-        // Transaccion::create([
-        //     'monto' => 1200,
-        //     'fecha' => 2021
-        // ]);
+        Transaccion::create([
+            'monto' => 1200,
+            'fecha' => '2021-06-12',
+            'hora' => Carbon::now()->toTimeString(),
+            'ci_cliente' => 8754878,
+            'nombre_cliente' => 'RAFAEL GARCIA ARIAS',
+            'tipo' => 'DEPOSITO',
+            'cod_funcionario' => 1234,
+            'descripcion' => 'Deposito en caja de ahorro',
+            'num_cuenta_id' => 2
+        ]);
+        Transaccion::create([
+            'monto' => 110,
+            'fecha' => '2021-06-15',
+            'hora' => Carbon::now()->toTimeString(),
+            'ci_cliente' => 87548681,
+            'nombre_cliente' => 'ROBERTO APAZA GONZALES',
+            'tipo' => 'DEPOSITO',
+            'cod_funcionario' => 1234,
+            'descripcion' => 'Deposito en caja de ahorro',
+            'num_cuenta_id' => 4
+        ]);
+        Transaccion::create([
+            'monto' => 1100,
+            'fecha' => '2021-06-10',
+            'hora' => Carbon::now()->toTimeString(),
+            'ci_cliente' => 8754868,
+            'nombre_cliente' => 'CARMEN RIOS ROJAS',
+            'tipo' => 'DEPOSITO',
+            'cod_funcionario' => 1234,
+            'descripcion' => 'Deposito en caja de ahorro',
+            'num_cuenta_id' => 3
+        ]);
+        Transaccion::create([
+            'monto' => 100,
+            'fecha' => '2021-06-20',
+            'hora' => Carbon::now()->toTimeString(),
+            'ci_cliente' => 8754868,
+            'nombre_cliente' => 'CARMEN RIOS ROJAS',
+            'tipo' => 'DEPOSITO',
+            'cod_funcionario' => 1234,
+            'descripcion' => 'Deposito en caja de ahorro',
+            'num_cuenta_id' => 5
+        ]);
+        Transaccion::create([
+            'monto' => 1200,
+            'fecha' => '2021-06-12',
+            'hora' => Carbon::now()->toTimeString(),
+            'ci_cliente' => 8754878,
+            'nombre_cliente' => 'RAFAEL GARCIA ARIAS',
+            'tipo' => 'RETIRO',
+            'cod_funcionario' => 1234,
+            'descripcion' => 'Retiro en caja de ahorro',
+            'num_cuenta_id' => 2
+        ]);
+        Transaccion::create([
+            'monto' => 110,
+            'fecha' => '2021-06-15',
+            'hora' => Carbon::now()->toTimeString(),
+            'ci_cliente' => 87548681,
+            'nombre_cliente' => 'ROBERTO APAZA GONZALES',
+            'tipo' => 'RETIRO',
+            'cod_funcionario' => 1234,
+            'descripcion' => 'Retiro en caja de ahorro',
+            'num_cuenta_id' => 4
+        ]);
+        Transaccion::create([
+            'monto' => 1100,
+            'fecha' => '2021-06-10',
+            'hora' => Carbon::now()->toTimeString(),
+            'ci_cliente' => 8754868,
+            'nombre_cliente' => 'CARMEN RIOS ROJAS',
+            'tipo' => 'RETIRO',
+            'cod_funcionario' => 1234,
+            'descripcion' => 'Retiro en caja de ahorro',
+            'num_cuenta_id' => 3
+        ]);
+        Transaccion::create([
+            'monto' => 100,
+            'fecha' => '2021-06-20',
+            'hora' => Carbon::now()->toTimeString(),
+            'ci_cliente' => 8754868,
+            'nombre_cliente' => 'CARMEN RIOS ROJAS',
+            'tipo' => 'RETIRO',
+            'cod_funcionario' => 1234,
+            'descripcion' => 'Retiro en caja de ahorro',
+            'num_cuenta_id' => 5
+        ]);
     }
 
     /**

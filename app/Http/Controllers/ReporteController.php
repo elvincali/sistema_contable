@@ -15,13 +15,28 @@ use App\TipoCuenta;
 class ReporteController extends Controller
 {
     public function deposito(Request $request){
-        $depositos = Transaccion::where('tipo', 'DEPOSITO')
+        $items = Transaccion::where('tipo', 'DEPOSITO')
                                 ->whereBetween('fecha', [$request->fecha_min, $request->fecha_max])
                                 ->get();
-        return $depositos;
+        for ($i=0; $i < count($items); $i++) { 
+            $items[$i]->num_cuenta_id = Cuenta::where('id', $items[$i]->num_cuenta_id)->pluck('num_cuenta');
+        }              
+        // return $items;          
         $pdf = App::make('dompdf.wrapper');
-        $pdf->loadView('pdf.templatePdf', compact('depositos'));
+        $pdf->loadView('pdf.templatePdf', compact('items'));
         return $pdf->stream();
-        // return view('pdf.templatePdf');
+    }
+
+    public function retiro(Request $request){
+        $items = Transaccion::where('tipo', 'RETIRO')
+                                ->whereBetween('fecha', [$request->fecha_min, $request->fecha_max])
+                                ->get();
+        for ($i=0; $i < count($items); $i++) { 
+            $items[$i]->num_cuenta_id = Cuenta::where('id', $items[$i]->num_cuenta_id)->pluck('num_cuenta');
+        }              
+        // return $items;          
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('pdf.templatePdf', compact('items'));
+        return $pdf->stream();
     }
 }

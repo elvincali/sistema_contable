@@ -125,7 +125,7 @@
                         <table>
                             <tr>
                                 <td class="title">
-                                    <img src="img/assets/logo.png" alt="Company logo" style="width: 100%; max-width: 300px" />
+                                    {{-- <img src="img/assets/logo.png" alt="Company logo" style="width: 100%; max-width: 300px" /> --}}
                                 </td>
 
                                 <td>
@@ -137,7 +137,7 @@
                     </td>
                 </tr>
 
-                <tr class="information">
+                {{-- <tr class="information">
                     <td colspan="2">
                         <table>
                             <tr>
@@ -155,22 +155,28 @@
                             </tr>
                         </table>
                     </td>
-                </tr>
-                <thead>
-                    <tr class="heading">
-                        <td>Fecha</td>
-                        <td>Hora</td>
-                        <td>Depositante</td>
-                        <td>C.I.</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="details">
-                        <td>Check</td>
-    
-                        <td>1000</td>
-                    </tr>
-                </tbody>
+                </tr> --}}
+			</table>
+			<table>
+				<tr class="heading">
+					<td>CI</td>
+					<td>Nombre</td>
+					<td>Monto</td>
+					<td>Numero Cuenta</td>
+					<td>Fecha</td>
+					<td>Hora</td>
+				</tr>
+				@foreach ($items as $item)
+					<tr class="details">
+						<td>{{ $item->ci_cliente }}</td>
+						<td>{{ $item->nombre_cliente }}</td>
+						<td>{{ $item->monto }}</td>
+						<td>{{ $item->num_cuenta_id->first() }}</td>
+						<td>{{ $item->fecha }}</td>
+						<td>{{ $item->hora }}</td>
+					</tr>
+				@endforeach
+					
 			</table>
 		</div>
 	</body>

@@ -38,7 +38,7 @@ Route::get('reportes', 'HomeController@reporte')->name('reporte');
 // Route::post('reportes', 'HomeController@reporteBuscar')->name('reporte');
 Route::post('reportes/deposito', 'ReporteController@deposito')->name('reporte.deposito');
 Route::post('reportes/retiro', 'ReporteController@retiro')->name('reporte.retiro');
-Route::post('reportes/transaccion', 'ReporteController@transaccion')->name('reporte.transaccion');
+Route::post('reportes/transaccion', 'ReporteController@cliente')->name('reporte.cliente');
 
 Route::get('/prueba', function(){
     return view('pdf.recibo');
