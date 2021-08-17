@@ -13,6 +13,7 @@ use DB;
 
 use App\Transaccion;
 use App\Cuenta;
+use App\Bitacora;
 
 class RetiroController extends Controller
 {
@@ -58,7 +59,7 @@ class RetiroController extends Controller
         } catch (\Exception $e) {
             return 'fallo';
         }
-        return redirect()->route('transacciones.index');
+        return redirect()->route('transacciones.index')->with(['message' => 'se ha realizado el Retiro con exito']);
     }
 
     public function show($id)

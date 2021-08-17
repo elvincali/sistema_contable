@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Moneda;
+use App\Bitacora;
 
 class MonedaController extends Controller
 {
@@ -25,8 +26,7 @@ class MonedaController extends Controller
         $moneda->abreviacion = $request->abreviacion;
 
         $moneda->save();
-
-        return redirect('/monedas')->with(['message' => 'la Moneda se ha creado exitosamente']);
+        return redirect()->route('monedas.index')->with(['message' => 'la Moneda se ha creado exitosamente']);
     }
 
     public function edit($id){
@@ -42,6 +42,6 @@ class MonedaController extends Controller
         $moneda->abreviacion = $request->abreviacion;
         $moneda->save();
 
-        return redirect('/monedas')->with(['message' => 'la Moneda a sido actualizada exitosamente']);
+        return redirect()->route('monedas.index')->with(['message' => 'la Moneda a sido actualizada exitosamente']);
     }
 }

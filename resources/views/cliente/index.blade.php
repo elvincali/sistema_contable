@@ -14,6 +14,7 @@
                 @can('crear usuario')
                     <a href="{{ route('clientes.create') }}" class="btn btn-outline-success btn-sm ml-5">Añadir</a>
                 @endcan
+                {{-- <a href="javascript:window.print();">Imprimir</a> --}}
             </div>
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -40,12 +41,12 @@
                             <td>{{ $cliente->ocupacion }}</td>
                             <td>
                                 @can('mostrar usuario')
-                                    <a class="btn btn-info mt-1" href="{{ route('clientes.show', $cliente->id) }}">
+                                    <a class="btn btn-info mt-1" href="{{ route('clientes.show', $cliente->user_id) }}">
                                         <i class="far fa-eye"></i>
                                     </a>
                                 @endcan
                                 @can('editar usuario')
-                                    <a class="btn btn-warning mt-1" href="{{ route('clientes.edit', $cliente->id) }}">
+                                    <a class="btn btn-warning mt-1" href="{{ route('clientes.edit', $cliente->user_id) }}">
                                         <i class="far fa-edit"></i>
                                     </a>
                                 @endcan

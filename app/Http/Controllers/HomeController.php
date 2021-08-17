@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Bitacora;
+use App\User;
+use App\Cliente;
+use App\Cuenta;
+use App\Transaccion;
 
 use Illuminate\Http\Request;
 
@@ -33,8 +37,32 @@ class HomeController extends Controller
     }
 
     public function bitacora(){
-        $bitacoras = Bitacora::all();
-
+        $bitacoras = file(Storage_path() . '/app/bitacora.log');
+        for ($i=0; $i < count($bitacoras); $i++) { 
+            $bitacoras[$i] = explode('--', $bitacoras[$i]);
+        }
+        
         return view('bitacora.index', compact('bitacoras'));
+    }
+
+    public function reporte(Request $request){
+        return view('pdf.reporte');
+    }
+
+    public function reporteBuscar(Request $request){
+        return view('pdf.reporte');         
+
+    }
+
+    function deposito(Request $request){
+        
+    }
+
+    function retiro(Request $request){
+        
+    }
+
+    function transaccion(Request $request){
+        
     }
 }

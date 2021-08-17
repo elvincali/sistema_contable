@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\TipoCuenta;
 use App\Moneda;
-// use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
+use App\Bitacora;
+
 class TipoCuentaController extends Controller
 {
     public function index(){

@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Enfermera;
+use App\Bitacora;
 use App\User;
 
 class LoginController extends Controller
@@ -49,6 +49,9 @@ class LoginController extends Controller
     }
 
     public function redirectPath(){
+        Bitacora::register(
+            'Sesion', 'Inicio de Sesion', \Request::ip()
+        );
         $user = User::with('roles')
                     ->where('users.id', Auth::user()->id)
                     ->first();
@@ -59,6 +62,9 @@ class LoginController extends Controller
     }
 
     public function logout(Request $request){
+        Bitacora::register(
+            'Sesion', 'Se ha cerrado Sesion ', \Request::ip()
+        );
         Auth::logout();
         $request->session()->invalidate();
         return redirect('/');

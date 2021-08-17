@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Bitacora;
 use Illuminate\Http\Request;
 
 use Carbon\Carbon;
@@ -13,6 +12,7 @@ use App\User;
 use App\Cliente;
 use App\TipoCuenta;
 use App\Sucursal;
+use App\Bitacora;
 
 class CuentaController extends Controller
 {
@@ -56,7 +56,7 @@ class CuentaController extends Controller
             'crear', 'se ha creado la cuenta del cliente' . $request->cliente_id, \Request::ip()
         );
 
-        return redirect('cuentas')->with(['message' => 'guardado exitosamente']);
+        return redirect()->route('cuentas.index')->with(['message' => 'guardado exitosamente']);
     }
 
     public function edit($id){

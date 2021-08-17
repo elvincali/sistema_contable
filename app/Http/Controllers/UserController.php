@@ -8,6 +8,7 @@ use App\User;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use App\Bitacora;
 
 class UserController extends Controller
 {
@@ -53,7 +54,7 @@ class UserController extends Controller
 
         $funcionario->assignRole($request->rol);
 
-        return redirect('/funcionarios')->with(['message' => 'el Funcionario se creo exitosamente']);
+        return redirect()->route('funcionarios.index')->with(['message' => 'el Funcionario se creo exitosamente']);
 
     }
 
@@ -77,7 +78,6 @@ class UserController extends Controller
     {
         $funcionario = User::findOrFail($id);
         $rol_actual = $funcionario::with('roles')->first();
-        // return $funcionario->nombre;
         if ($request->hasFile('imagen')) {
             $ruta = $request->file('imagen')->store('public');
             $funcionario->foto = $ruta;
@@ -97,7 +97,7 @@ class UserController extends Controller
 
         $funcionario->assignRole($request->rol);
 
-        return redirect('funcionarios')->with(['message', 'El funcionacio a sido actualizado con exito']);
+        return redirect()->route('funcionarios.index')->with(['message', 'El funcionacio a sido actualizado con exito']);
     }
 
     public function destroy($id)

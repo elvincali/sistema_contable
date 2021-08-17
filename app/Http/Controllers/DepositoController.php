@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Bitacora;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +9,7 @@ use DB;
 
 use App\Transaccion;
 use App\Cuenta;
+use App\Bitacora;
 
 class DepositoController extends Controller
 {
@@ -55,9 +55,9 @@ class DepositoController extends Controller
                 );
             });
         } catch (\Exception $e) {
-            //throw $th;
+            return $e;
         }
-        return redirect()->route('transacciones.index');
+        return redirect()->route('transacciones.index')->with(['message' => 'se ha realizado el Deposito con exito']);
 
 
     }
