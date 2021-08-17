@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bitacora;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -56,9 +57,9 @@ class DepositoController extends Controller
         } catch (\Exception $e) {
             //throw $th;
         }
-        return redirect()->route('transacciones.index');        
+        return redirect()->route('transacciones.index');
 
-        
+
     }
 
     public function show($id)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bitacora;
 use Illuminate\Http\Request;
 
 use Carbon\Carbon;
@@ -30,7 +31,7 @@ class CuentaController extends Controller
         $sucursales = Sucursal::all();
 
         return view('cuenta.create', compact('tipo_cuentas', 'clientes', 'sucursales'));
-    }    
+    }
 
     public function store(Request $request){
         $request->validate([
@@ -56,17 +57,17 @@ class CuentaController extends Controller
         );
 
         return redirect('cuentas')->with(['message' => 'guardado exitosamente']);
-    }    
+    }
 
     public function edit($id){
-        
-    }  
+
+    }
 
     public function update(Request $request, $id){
-    
-    }    
+
+    }
 
     public function show($id){
-    
-    }    
+
+    }
 }

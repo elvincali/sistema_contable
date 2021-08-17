@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bitacora;
 use Illuminate\Http\Request;
 use App\Rules\MontoAceptado;
 use App\Rules\MontoPermitido;

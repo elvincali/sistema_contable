@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use App\Util\BaseResponse;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -50,6 +53,21 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($request->expectsJson()) {
+            if ($exception instanceof QueryException) {
+                $response = new BaseResponse();
+                $response->errorResponse($exception->getCode(), "Error en Base de datos.");
+                Log::error($exception->getMessage());
+                return response()->json($response, 500);
+            }
+            if ($request instanceof Throwable) {
+                $response = new BaseResponse();
+                $code = ($exception->getCode() == 0) ? 500 : $exception->getCode();
+                $response->errorResponse($code, $exception->getMessage());
+                Log::error($exception->getMessage());
+                return response()->json($response, 500);
+            }
+        }
         return parent::render($request, $exception);
     }
 }

@@ -17,3 +17,14 @@ Route::post('/validar-cuenta', 'ApiController@validarCuenta');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['namespace' => 'Api'], function () {
+    Route::post('login', 'AuthController@login');
+    Route::get('account/{number}', 'AccountController@getInfoFromAccountNumber');
+
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('transfer', 'TransferController@index');
+        Route::get('transfer/create', 'TransferController@create');
+        Route::post('transfer', 'TransferController@store');
+    });
+});
