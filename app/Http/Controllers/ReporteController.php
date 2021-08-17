@@ -39,4 +39,13 @@ class ReporteController extends Controller
         $pdf->loadView('pdf.templatePdf', compact('items'));
         return $pdf->stream();
     }
+
+    public function cliente(Request $request){
+        $cuenta = Cuenta::where('num_cuenta', $request->num_cuenta)->first();
+        $items = Transaccion::where('num_cuenta_id', $cuenta->id)->get();
+
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('pdf.templatePdfCliente', compact('items'));
+        return $pdf->stream();
+    }
 }

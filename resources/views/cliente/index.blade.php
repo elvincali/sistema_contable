@@ -41,12 +41,12 @@
                             <td>{{ $cliente->ocupacion }}</td>
                             <td>
                                 @can('mostrar usuario')
-                                    <a class="btn btn-info mt-1" href="{{ route('clientes.show', $cliente->id) }}">
+                                    <a class="btn btn-info mt-1" href="{{ route('clientes.show', $cliente->user_id) }}">
                                         <i class="far fa-eye"></i>
                                     </a>
                                 @endcan
                                 @can('editar usuario')
-                                    <a class="btn btn-warning mt-1" href="{{ route('clientes.edit', $cliente->id) }}">
+                                    <a class="btn btn-warning mt-1" href="{{ route('clientes.edit', $cliente->user_id) }}">
                                         <i class="far fa-edit"></i>
                                     </a>
                                 @endcan
